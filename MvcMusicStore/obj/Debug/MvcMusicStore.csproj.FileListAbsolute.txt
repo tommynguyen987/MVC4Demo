@@ -85,6 +85,6 @@ D:\SHARE\Documents\MVC Demo\MvcMusicStore\MvcMusicStore\bin\ko\System.Spatial.re
 D:\SHARE\Documents\MVC Demo\MvcMusicStore\MvcMusicStore\bin\ru\System.Spatial.resources.dll
 D:\SHARE\Documents\MVC Demo\MvcMusicStore\MvcMusicStore\bin\zh-Hans\System.Spatial.resources.dll
 D:\SHARE\Documents\MVC Demo\MvcMusicStore\MvcMusicStore\bin\zh-Hant\System.Spatial.resources.dll
-D:\SHARE\Documents\MVC Demo\MvcMusicStore\MvcMusicStore\obj\Debug\MvcMusicStore.csprojResolveAssemblyReference.cache
 D:\SHARE\Documents\MVC Demo\MvcMusicStore\MvcMusicStore\obj\Debug\MvcMusicStore.dll
 D:\SHARE\Documents\MVC Demo\MvcMusicStore\MvcMusicStore\obj\Debug\MvcMusicStore.pdb
+D:\SHARE\Documents\MVC Demo\MvcMusicStore\MvcMusicStore\obj\Debug\MvcMusicStore.csprojResolveAssemblyReference.cache
