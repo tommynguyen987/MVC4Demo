@@ -319,6 +319,7 @@
     <Content Include="Views\StoreManager\Delete.cshtml" />
     <Content Include="Views\StoreManager\CreateArtist.cshtml" />
     <Content Include="Views\StoreManager\CreateGenre.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -78,6 +78,9 @@ namespace MvcMusicStore.Controllers
             return View(album);
         }
 
+        //
+        // POST: /StoreManager/CreateGenre
+
         [HttpPost]
         public ActionResult CreateGenre(Genre genre)
         {
@@ -90,6 +93,9 @@ namespace MvcMusicStore.Controllers
 
             return View(genre);
         }
+
+        //
+        // POST: /StoreManager/CreateArtist
 
         [HttpPost]
         public ActionResult CreateArtist(Artist artist)
@@ -133,20 +139,48 @@ namespace MvcMusicStore.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(album);
+            else
+            {
+                ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
+                ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
+                return View(album);
+            }
         }
+
+        //[HttpPost]
+        //public ActionResult Edit()
+        //{
+        //    Album album = new Album();
+        //    TryUpdateModel(album);
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(album).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    else
+        //    {
+        //        ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
+        //        ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
+        //        return View(album);
+        //    }
+        //}
 
         //
         // GET: /StoreManager/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
+            //Album album = db.Albums.Find(id);
+            //if (album == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(album);
             Album album = db.Albums.Find(id);
-            if (album == null)
-            {
-                return HttpNotFound();
-            }
-            return View(album);
+            db.Albums.Remove(album);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         //

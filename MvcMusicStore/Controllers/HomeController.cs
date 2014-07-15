@@ -33,5 +33,15 @@ namespace MvcMusicStore.Controllers
         {
             return View();
         }
+
+        public ActionResult Search(string q)
+        {
+            var db = new MvcMusicStore.Models.MusicStoreDBContext();
+            var albums = db.Albums.Include("Artist")
+                                  .Where(a => a.Title.Contains(q))
+                                  .Take(10);
+
+            return View(albums);
+        }
     }
 }
