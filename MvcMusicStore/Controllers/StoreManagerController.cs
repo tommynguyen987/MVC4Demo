@@ -147,24 +147,28 @@ namespace MvcMusicStore.Controllers
             }
         }
 
-        //[HttpPost]
-        //public ActionResult Edit()
-        //{
-        //    Album album = new Album();
-        //    TryUpdateModel(album);
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(album).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
-        //        ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
-        //        ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
-        //        return View(album);
-        //    }
-        //}
+        [HttpPost]
+        public ActionResult Edit1()
+        {
+            var album = new Album();
+            album.GenreId = int.Parse(Request.Form["GenreId"]);
+            album.ArtistId = int.Parse(Request.Form["ArtistId"]);
+            album.Title = Request.Form["Title"];
+            album.Price = decimal.Parse(Request.Form["Price"]);
+            TryUpdateModel(album);
+            if (ModelState.IsValid)
+            {
+                db.Entry(album).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
+                ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
+                return View(album);
+            }
+        }
 
         //
         // GET: /StoreManager/Delete/5
