@@ -49,6 +49,13 @@
                     @Html.ActionLink("Details", "Details", new { id = item.AlbumId }) |
                     @*@Html.ActionLink("Delete", "Delete", new { id=item.AlbumId })*@
                     @Html.ActionLink("Delete", "Delete", new { id = item.AlbumId }, new { onclick = "return confirm('Are you sure you want to delete this item?');" })
+                    @*@Ajax.ActionLink("Delete", "Delete", new { id = item.AlbumId }, new AjaxOptions
+                                                                                   {
+                                                                                       Confirm = "Are you sure you want to delete this item?",
+                                                                                       HttpMethod = "GET",
+                                                                                       InsertionMode = InsertionMode.Replace,
+                                                                                       LoadingElementId = "AlbumList"
+                                                                                   })*@
                 </td>
             </tr>
         }

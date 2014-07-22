@@ -6,8 +6,8 @@
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-    </head>
+        <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+        @Scripts.Render("~/bundles/modernizr")></head>
     <body>
         <header>
             <div class="content-wrapper">
@@ -43,6 +43,7 @@
         </footer>
 
         @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
         @RenderSection("scripts", required: false)
     </body>
 </html>

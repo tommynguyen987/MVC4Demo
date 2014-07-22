@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Web.WebPages.OAuth;
+using DotNetOpenAuth.AspNet.Clients;
+using DotNetOpenAuth.OpenId.RelyingParty;
 using MvcMusicStore.Models;
 
 namespace MvcMusicStore
@@ -26,7 +28,15 @@ namespace MvcMusicStore
             //    appId: "",
             //    appSecret: "");
 
-            //OAuthWebSecurity.RegisterGoogleClient();
+            //OAuthWebSecurity.RegisterLinkedInClient(
+            //    consumerKey: "", 
+            //    consumerSecret: "");
+
+            OAuthWebSecurity.RegisterGoogleClient();
+            OAuthWebSecurity.RegisterYahooClient();            
+
+            //var MyOpenIdClient = new OpenIdClient("myopenid", WellKnownProviders.MyOpenId);
+            //OAuthWebSecurity.RegisterClient(MyOpenIdClient,"MyOpenID", null);
         }
     }
 }

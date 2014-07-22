@@ -20,7 +20,8 @@ namespace MvcMusicStore.Controllers
         //
         // GET: /Account/Login
 
-        [AllowAnonymous]
+        [AllowAnonymous]        
+        //[RequireHttps]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -59,7 +60,7 @@ namespace MvcMusicStore.Controllers
 
         //
         // GET: /Account/Register
-
+        
         [AllowAnonymous]
         public ActionResult Register()
         {

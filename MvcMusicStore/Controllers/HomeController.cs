@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcMusicStore.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -36,12 +37,27 @@ namespace MvcMusicStore.Controllers
 
         public ActionResult Search(string q)
         {
-            var db = new MvcMusicStore.Models.MusicStoreDBContext();
+            var db = new MusicStoreDBContext();
             var albums = db.Albums.Include("Artist")
                                   .Where(a => a.Title.Contains(q))
                                   .Take(10);
 
             return View(albums);
         }
+
+        public ActionResult QuickSearch(string term)
+        {
+            var artists = GetArtists(term).Select(a => new { value = a.Name });
+            return Json(artists, JsonRequestBehavior.AllowGet);
+        }
+
+        private List<Artist> GetArtists(string searchString)
+        {
+            var storeDB = new MusicStoreDBContext();
+            return storeDB.Artists
+                    .Where(a => a.Name.Contains(searchString))
+                    .ToList();
+        }
+
     }
 }
