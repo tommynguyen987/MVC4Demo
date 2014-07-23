@@ -6,8 +6,9 @@
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")>        
         <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-        @Scripts.Render("~/bundles/modernizr")></head>
+    </head>
     <body>
         <header>
             <div class="content-wrapper">
@@ -44,6 +45,7 @@
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/jqueryui")
-        @RenderSection("scripts", required: false)
-    </body>
+        @Scripts.Render("~/bundles/jqueryval")        
+        <script src="~/Scripts/mustache.js"></script>
+        @RenderSection("scripts", required: false)</body>
 </html>

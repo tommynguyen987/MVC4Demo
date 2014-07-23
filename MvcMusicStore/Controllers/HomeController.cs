@@ -39,24 +39,30 @@ namespace MvcMusicStore.Controllers
         {
             var db = new MusicStoreDBContext();
             var albums = db.Albums.Include("Artist")
-                                  .Where(a => a.Title.Contains(q))
-                                  .Take(10);
+                                  .Where(a => a.Title.Contains(q));
+                                  //.Take(10);
 
             return View(albums);
         }
 
         public ActionResult QuickSearch(string term)
         {
-            var artists = GetArtists(term).Select(a => new { value = a.Name });
-            return Json(artists, JsonRequestBehavior.AllowGet);
+            var albums = GetAlbums(term).Select(a => new { value = a.Title });
+            return Json(albums, JsonRequestBehavior.AllowGet);
         }
 
-        private List<Artist> GetArtists(string searchString)
+        private List<Album> GetAlbums(string searchString)
         {
             var storeDB = new MusicStoreDBContext();
-            return storeDB.Artists
-                    .Where(a => a.Name.Contains(searchString))
+            return storeDB.Albums.Include("Artist")
+                    .Where(a => a.Title.Contains(searchString))
                     .ToList();
+        }
+
+        public ActionResult AlbumSearch(string q)
+        {
+            var albums = GetAlbums(q);
+            return Json(albums, JsonRequestBehavior.AllowGet);
         }
 
     }
