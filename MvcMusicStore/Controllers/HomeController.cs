@@ -56,7 +56,7 @@ namespace MvcMusicStore.Controllers
             var storeDB = new MusicStoreDBContext();
             return storeDB.Albums.Include("Artist")
                     .Where(a => a.Title.Contains(searchString))
-                    .ToList();
+                    .ToList();                    
         }
 
         public ActionResult AlbumSearch(string q)
