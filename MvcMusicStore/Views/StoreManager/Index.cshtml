@@ -1,8 +1,11 @@
-﻿@model IEnumerable<MvcMusicStore.Models.Album>
+﻿@model PagedList.IPagedList<MvcMusicStore.Models.Album>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Albums";
 }
+
+@Styles.Render("~/Content/PagedList.css")
 
 <h2>Albums</h2>
 
@@ -15,16 +18,16 @@
     <table>
         <tr>
             <th>
-                @Html.DisplayName("Genre")
+                Genre
             </th>
             <th>
-                @Html.DisplayName("Artist")
+                Artist
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                Title
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+               Price
             </th>
             <th></th>
         </tr>
@@ -59,11 +62,11 @@
                 </td>
             </tr>
         }
-
     </table>   
-
-    @*@Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page }))
-    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount albums*@
+    <br/>
+    <div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount albums
     @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+    </div>
 </div>

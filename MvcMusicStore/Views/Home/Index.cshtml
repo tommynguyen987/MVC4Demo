@@ -1,6 +1,11 @@
-﻿@{
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@{
     ViewBag.Title = "Home Page";
 }
+
+@Styles.Render("~/Content/PagedList.css")
 
 @section featured {
     <section class="featured">
@@ -49,7 +54,6 @@
 </script>*@
 
 <div id="searchResults">
-
 </div>
 
 <h3>We suggest the following:</h3>
@@ -81,7 +85,7 @@
     <script>
         $("input[data-autocomplete-source]").each(function () {
             var target = $(this);
-            target.autocomplete({ source: target.attr("data-autocomplete-source") });
+            target.autocomplete({ source: target.attr("data-autocomplete-source") });            
         });
 
         //$("#albumSearch").submit(function (event) {

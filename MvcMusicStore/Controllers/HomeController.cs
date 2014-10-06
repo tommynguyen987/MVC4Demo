@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace MvcMusicStore.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
@@ -45,7 +46,7 @@ namespace MvcMusicStore.Controllers
         }
 
         public ActionResult QuickSearch(string term)
-        {
+        {            
             var albums = GetAlbums(term).Select(a => new { value = a.Title });
             return Json(albums, JsonRequestBehavior.AllowGet);
         }
@@ -58,16 +59,13 @@ namespace MvcMusicStore.Controllers
                     .ToList();                    
         }
 
-        public ActionResult AlbumSearch(string q)
+        public ActionResult AjaxSearch(string searchString, int? page)
         {
-            var albums = GetAlbums(q);
-            return Json(albums, JsonRequestBehavior.AllowGet);
-        }
+            var listPaged = GetPagedNames(searchString, page);  // GetPagedNames is found in BaseController
+            if (listPaged == null)
+                return HttpNotFound();
 
-        public PartialViewResult AjaxSearch(string q)
-        {
-            var albums = GetAlbums(q);
-            return this.PartialView("SearchResults",albums);
-        }
+            return PartialView("SearchResults", listPaged);
+        }        
     }
 }

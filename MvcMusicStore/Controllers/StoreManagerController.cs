@@ -10,7 +10,7 @@ using PagedList;
 
 namespace MvcMusicStore.Controllers
 {
-    public class StoreManagerController : Controller
+    public class StoreManagerController : BaseController
     {
         private MusicStoreDBContext db = new MusicStoreDBContext();
 
@@ -18,11 +18,12 @@ namespace MvcMusicStore.Controllers
         // GET: /StoreManager/
 
         public ActionResult Index(int ? page)
-        {
-            var albums = db.Albums.Include(a => a.Genre).Include(a => a.Artist);            
-            int pageNumber = (page ?? 1);
-            int pageSize = 10;
-            return View(albums.ToPagedList(pageNumber, pageSize));
+        {            
+            var listPaged = GetPagedNames(string.Empty, page); // GetPagedNames is found in BaseController
+            if (listPaged == null)
+                return HttpNotFound();
+            
+            return View(listPaged);
         }
 
         //

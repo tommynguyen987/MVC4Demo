@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MvcMusicStore.Models.Album>
+﻿@model PagedList.IPagedList<MvcMusicStore.Models.Album>
+@using PagedList.Mvc;
 
 <table>
     <tr>
@@ -15,3 +16,5 @@
         </tr>
     }
 </table>
+
+@Html.PagedListPager(Model, page => Url.Action("AjaxSearch", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "searchResults" }))
