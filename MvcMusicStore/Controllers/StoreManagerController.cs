@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcMusicStore.Models;
+using PagedList;
 
 namespace MvcMusicStore.Controllers
 {
@@ -16,10 +17,12 @@ namespace MvcMusicStore.Controllers
         //
         // GET: /StoreManager/
 
-        public ActionResult Index()
+        public ActionResult Index(int ? page)
         {
-            var album = db.Albums.Include(a => a.Genre).Include(a => a.Artist);
-            return View(album.ToList());
+            var albums = db.Albums.Include(a => a.Genre).Include(a => a.Artist);            
+            int pageNumber = (page ?? 1);
+            int pageSize = 10;
+            return View(albums.ToPagedList(pageNumber, pageSize));
         }
 
         //

@@ -24,6 +24,7 @@
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Manage Music", "Index", "StoreManager")</li>
                     </ul>
                 </nav>
             </div>
@@ -48,6 +49,6 @@
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/jqueryval")    
     <script src="~/Scripts/mustache.js"></script>
-    @RenderSection("scripts", required: false)
-</body>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @RenderSection("scripts", required: false)</body>
 </html>

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<MvcMusicStore.Models.Album>
+
+<table>
+    <tr>
+        <td><b>Artist</b></td>
+        <td><b>Title</b></td>
+        <td><b>Price</b></td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Artist.Name</td>
+            <td>@item.Title</td>
+            <td>@string.Format("{0:c}", item.Price)</td>
+        </tr>
+    }
+</table>

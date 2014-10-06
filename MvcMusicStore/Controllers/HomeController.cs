@@ -40,7 +40,6 @@ namespace MvcMusicStore.Controllers
             var db = new MusicStoreDBContext();
             var albums = db.Albums.Include("Artist")
                                   .Where(a => a.Title.Contains(q));
-                                  //.Take(10);
 
             return View(albums);
         }
@@ -65,5 +64,10 @@ namespace MvcMusicStore.Controllers
             return Json(albums, JsonRequestBehavior.AllowGet);
         }
 
+        public PartialViewResult AjaxSearch(string q)
+        {
+            var albums = GetAlbums(q);
+            return this.PartialView("SearchResults",albums);
+        }
     }
 }

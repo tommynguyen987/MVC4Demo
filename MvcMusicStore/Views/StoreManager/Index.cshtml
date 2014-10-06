@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<MvcMusicStore.Models.Album>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Albums";
 }
 
-<h2>Index</h2>
+<h2>Albums</h2>
 
 <p>
     @Html.ActionLink("Create new genre", "CreateGenre") &nbsp;&nbsp;&nbsp;
@@ -60,5 +60,10 @@
             </tr>
         }
 
-    </table>
+    </table>   
+
+    @*@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount albums*@
+    @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
 </div>
