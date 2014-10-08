@@ -17,4 +17,4 @@
     }
 </table>
 
-@Html.PagedListPager(Model, page => Url.Action("AjaxSearch", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "searchResults" }))
+@Html.PagedListPager(Model, page => Url.Action("AjaxSearch", new { searchString = ViewBag.queryString, page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "GET", UpdateTargetId = "searchResults" }))

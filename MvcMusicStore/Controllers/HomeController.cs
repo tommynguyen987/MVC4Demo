@@ -60,11 +60,12 @@ namespace MvcMusicStore.Controllers
         }
 
         public ActionResult AjaxSearch(string searchString, int? page)
-        {
+        {            
             var listPaged = GetPagedNames(searchString, page);  // GetPagedNames is found in BaseController
             if (listPaged == null)
                 return HttpNotFound();
 
+            ViewBag.queryString = searchString;
             return PartialView("SearchResults", listPaged);
         }        
     }

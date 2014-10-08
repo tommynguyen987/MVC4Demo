@@ -36,8 +36,10 @@
                 LoadingElementId = "ajax-loader",
                 UpdateTargetId = "searchResults"
             }, new { @id="albumSearch" }))
-        {
-            <input type="text" name="q" data-autocomplete-source="@Url.Action("QuickSearch", "Home")" />
+        {           
+            
+            @Html.TextBox("searchString", ViewBag.queryString as string)
+            @*<input type="text" name="q" data-autocomplete-source="@Url.Action("QuickSearch", "Home")" />*@
             <input type="submit" value="Search" />
             <img id="ajax-loader" src="~/Content/themes/base/images/ajax-loader-large2.gif" style="display: none; vertical-align: middle;" />
         }        
@@ -82,12 +84,17 @@
     </li>
 </ol>
 @section scripts {
-    <script>
-        $("input[data-autocomplete-source]").each(function () {
-            var target = $(this);
-            target.autocomplete({ source: target.attr("data-autocomplete-source") });            
+    <script>       
+        $("#searchString").autocomplete({
+            source: '@Url.Action("QuickSearch", "Home")',
+            minLength: 1
         });
-
+        
+        //$("input[data-autocomplete-source]").keyup(function () {
+        //    var target = $(this);
+        //    target.autocomplete({ source: target.attr("data-autocomplete-source") });
+        //});
+        
         //$("#albumSearch").submit(function (event) {
         //    event.preventDefault();
 
@@ -108,7 +115,7 @@
         //        }
         //    });
         //});
-
+        
         function searchFailed (){
             $("#searchResults").html("Sorry, there was a problem with the search.");
         }

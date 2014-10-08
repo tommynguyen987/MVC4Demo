@@ -17,10 +17,10 @@ namespace MvcMusicStore.Controllers
                 return null;
 
             // retrieve list from database/whereverand
-            var listUnpaged = GetAlbums(searchString);          
-
+            var listUnpaged = GetAlbums(searchString);
+                        
             // page the list
-            const int pageSize = 20;
+            const int pageSize = 3;
             var listPaged = listUnpaged.ToPagedList(page ?? 1, pageSize);
 
             // return a 404 if user browses to pages beyond last page. special case first page if no items exist
@@ -33,11 +33,11 @@ namespace MvcMusicStore.Controllers
         private List<Album> GetAlbums(string searchString)
         {
             var storeDB = new MusicStoreDBContext();
-            if (string.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
-                return storeDB.Albums.Include("Artist").ToList();
+                return storeDB.Albums.Include("Artist").Where(a => a.Title.Contains(searchString)).ToList();
             }
-            return storeDB.Albums.Include("Artist").Where(a => a.Title.Contains(searchString)).ToList();
+            return storeDB.Albums.Include("Artist").ToList();;
         }
     }
 }

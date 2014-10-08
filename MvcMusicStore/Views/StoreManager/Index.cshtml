@@ -63,10 +63,8 @@
             </tr>
         }
     </table>   
-    <br/>
-    <div>
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
     Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount albums
     @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
-    </div>
+    
 </div>
